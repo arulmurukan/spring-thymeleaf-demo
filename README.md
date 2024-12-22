@@ -1,1 +1,1 @@
-Thymeeaf demo
+Thymeleaf demo
