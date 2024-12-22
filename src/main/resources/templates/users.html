@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List Using th:each</title>
+</head>
+
+<body>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Sr.No</th>
+        <th>Index</th>
+        <th>Even</th>
+        <th>Odd</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Gender</th>
+        <th>Actions</th>
+        <th>User Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user, status : ${users}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${status.index}"></td>
+        <td th:text="${status.even}"></td>
+        <td th:text="${status.odd}"></td>
+        <td th:text="${status.first}"></td>
+        <td th:text="${status.last}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.role}"></td>
+        <td th:text="${user.gender}"></td>
+        <td> <!-- th:if and th:unless -->
+            <a th:href="@{/update}" th:if="${user.role} == 'ADMIN'">UPDATE</a>
+            <a th:href="@{/delete}" th:if="${user.role} == 'ADMIN'">DELETE</a>
+            <a th:href="@{/view}" th:unless="${user.role} == 'ADMIN'">VIEW</a>
+        </td>
+        <!-- th:switch -->
+        <td th:switch="${user.role}">
+            <p th:case="'ADMIN'" th:remove="tag">Administrator</p>
+            <p th:case="'USER'" th:remove="tag">Normal User</p>
+            <p th:case="'GUEST'" th:remove="tag">Guest User</p>
+            <p th:case="*" th:remove="tag">Other User</p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<div class="container">
+    <h1>Thymeleaf swith case demo</h1>
+    <div class="row" th:each="user, status : ${users}">
+        <h4 th:utext="${user.name}"></h4>
+        <div th:switch="${user.role}">
+            <p th:case="'ADMIN'">User is an administrator</p>
+            <p th:case="'USER'">User is a general user</p>
+            <p th:case="'GUEST'">User is a guest</p>
+            <!-- * for default case -->
+            <p th:case="*">User is some other thing</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+</html>

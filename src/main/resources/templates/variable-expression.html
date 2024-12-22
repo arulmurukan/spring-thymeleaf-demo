@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf Variable Expression</title>
+</head>
+
+<body>
+<h1>Variable expression demo:</h1>
+<h1>User Details:</h1>
+<div>
+    <p> Name: <strong th:text="${user.name}"></strong></p>
+    <p> Email: <strong th:text="${user.email}"></strong></p>
+    <p> Role: <strong th:text="${user.role}"></strong></p>
+    <p> Gender: <strong th:text="${user.gender}"></strong></p>
+</div>
+<hr>
+<h1>Selection expression demo:</h1>
+<h1>User Details:</h1>
+<div th:object="${user}">
+    <p> Name: <strong th:text="*{name}"></strong></p>
+    <p> Email: <strong th:text="*{email}"></strong></p>
+    <p> Role: <strong th:text="*{role}"></strong></p>
+    <p> Gender: <strong th:text="*{gender}"></strong></p>
+</div>
+<hr>
+<h1>Message expression demo:</h1>
+<h1 >Message Details:</h1>
+<div>
+    <p> app.name= <strong th:text="#{app.name}"></strong></p>
+    <p> welcome.message= <strong th:text="#{welcome.message}"></strong></p>
+</div>
+</body>
+
+</html>
